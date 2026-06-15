@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
 <title>✨ BHASHA JADOO ✨ | Roman → Kurukh Banna Converter</title>
 
 <!-- html2canvas for PNG captures -->
@@ -13,11 +13,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background: radial-gradient(ellipse at 20% 30%, #0a0f1e, #03050b);
-  font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
   padding: 1.8rem 1.2rem;
   position: relative;
@@ -51,8 +52,9 @@ body::before {
   margin: 0 auto;
   position: relative;
   z-index: 10;
-  background: rgba(6, 10, 25, 0.68);
+  background: rgba(6, 10, 25, 0.72);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-radius: 5rem 3rem 5rem 3rem;
   padding: 2rem 2rem 2.2rem;
   border: 1px solid rgba(250, 204, 21, 0.5);
@@ -131,6 +133,7 @@ body::before {
   gap: 10px;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 8px 28px;
   border-radius: 60px;
   border: 1px solid #facc15;
@@ -189,11 +192,12 @@ body::before {
   letter-spacing: -0.2px;
 }
 
-/* input magic carpet */
+/* MOBILE FIX: improved input responsiveness */
 .magic-input {
   width: 100%;
-  height: 170px;
-  background: rgba(0, 0, 0, 0.65);
+  height: auto;
+  min-height: 170px;
+  background: rgba(0, 0, 0, 0.75);
   border: 2px solid rgba(250, 204, 21, 0.5);
   border-radius: 38px;
   padding: 18px 24px;
@@ -203,6 +207,12 @@ body::before {
   resize: vertical;
   transition: all 0.25s;
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
 }
 
 .magic-input:focus {
@@ -257,6 +267,7 @@ body::before {
   border: 1px dashed #a78bfa;
 }
 
+/* MOBILE FIX: text selection and overflow protection */
 .banna-throne {
   background: rgba(0, 0, 0, 0.7);
   border-radius: 48px;
@@ -273,6 +284,8 @@ body::before {
   letter-spacing: 3px;
   transition: all 0.2s;
   animation: gentleGlow 2.2s infinite alternate;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes gentleGlow {
@@ -290,7 +303,7 @@ body::before {
   text-align: center;
 }
 
-/* exciting button group */
+/* exciting button group - mobile friendly tap targets */
 .action-magic {
   display: flex;
   gap: 18px;
@@ -313,8 +326,11 @@ body::before {
   transition: all 0.25s cubic-bezier(0.2, 1, 0.4, 1.2);
   background: rgba(20, 20, 40, 0.9);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(250, 204, 21, 0.5);
   color: #FFF4CF;
+  -webkit-tap-highlight-color: rgba(250,204,21,0.3);
+  touch-action: manipulation;
 }
 
 .spell-btn:nth-child(1) {
@@ -357,10 +373,14 @@ body::before {
   opacity: 0.65;
 }
 
-/* responsive joy */
+/* responsive joy with improved mobile typing */
 @media (max-width: 700px) {
+  body {
+    padding: 1rem 0.8rem;
+  }
   .wizard-card {
-    padding: 1.4rem;
+    padding: 1.4rem 1.2rem;
+    border-radius: 3rem 2rem 3rem 2rem;
   }
   .magic-header h1 {
     font-size: 1.8rem;
@@ -376,16 +396,34 @@ body::before {
   .fun-label span, .flex-icon span {
     font-size: 1.1rem;
   }
+  .icon-bubble {
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
+  }
+  .magic-input {
+    min-height: 150px;
+    font-size: 15px;
+    padding: 16px 20px;
+  }
 }
 
 @media (max-width: 500px) {
   .banna-throne {
-    font-size: 26px;
+    font-size: 28px;
   }
   .spark-stack {
     gap: 12px;
     font-size: 2rem;
   }
+  .action-magic {
+    gap: 10px;
+  }
+}
+
+/* ensure textarea gets focus on mobile */
+.magic-input:focus {
+  outline: none;
 }
 </style>
 </head>
@@ -410,7 +448,7 @@ body::before {
     <div class="icon-bubble">📝🎤</div>
     <span>Roman Type Karo ~ Magic Hoga</span>
   </div>
-  <textarea id="inputText" class="magic-input" placeholder="Example: Kurukh banna likho, adivasi parampara, dharam aur shakti...&#10;Type karte hi Banna script mein badlega! ✨"></textarea>
+  <textarea id="inputText" class="magic-input" placeholder="Example: Kurukh banna likho, adivasi parampara, dharam aur shakti...&#10;Type karte hi Banna script mein badlega! ✨" enterkeyhint="done"></textarea>
   
   <!-- output area -->
   <div class="mystic-area">
@@ -442,6 +480,7 @@ body::before {
 // =========================================================
 //   FULLY FIXED & POWERFUL KEYMAP (NO BREAKS)
 //   Roman ➜ Kurukh Banna EXACT mapping with longest-first
+//   MOBILE TYPING FIXED: event listeners optimized
 // =========================================================
 
 // VOWELS : longer patterns first for accurate replacement
@@ -546,18 +585,31 @@ function convertRomanToBanna(inputStr) {
 const romanInput = document.getElementById("inputText");
 const bannaOutput = document.getElementById("outputText");
 
-// live conversion
+// live conversion - MOBILE FIX: using 'input' event works perfectly on mobile
+// also ensure we handle any composition events for better IME support
+let isComposing = false;
+
 function updateBanna() {
+  if (isComposing) return;
   const raw = romanInput.value;
   const converted = convertRomanToBanna(raw);
   bannaOutput.textContent = converted;
 }
 
+// for mobile keyboard composition (like hindi/roman IME)
+romanInput.addEventListener('compositionstart', () => {
+  isComposing = true;
+});
+romanInput.addEventListener('compositionend', (e) => {
+  isComposing = false;
+  updateBanna();
+});
+
 romanInput.addEventListener("input", updateBanna);
 romanInput.addEventListener("keyup", updateBanna);
 romanInput.addEventListener("change", updateBanna);
 
-// ---- Catchy Copy ----
+// ---- Catchy Copy with mobile support ----
 async function copyBannaSpell() {
   const bannaText = bannaOutput.textContent;
   if (!bannaText || bannaText.trim() === "" || bannaText === "🌀✨ यहाँ बन्ना लिपि चमकेगी ✨🌀") {
@@ -568,7 +620,14 @@ async function copyBannaSpell() {
     await navigator.clipboard.writeText(bannaText);
     alert("✅✨ बन्ना कॉपी हो गया! ✨ अब share करो || Banna copied!");
   } catch (err) {
-    alert("⚠️ कृपया manual copy karein: Ctrl+C");
+    // fallback for some mobile browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = bannaText;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert("✅✨ बन्ना कॉपी हो गया (manual method)!");
   }
 }
 
@@ -577,9 +636,11 @@ function clearMagic() {
   romanInput.value = "";
   bannaOutput.textContent = "";
   romanInput.focus();
+  // Force re-trigger empty conversion
+  updateBanna();
 }
 
-// ---- PNG download with fun loading and catchy effect ----
+// ---- PNG download with fun loading and mobile canvas fix ----
 async function downloadBannaArt() {
   const target = bannaOutput;
   const content = target.textContent;
@@ -599,18 +660,19 @@ async function downloadBannaArt() {
   const originalBorder = target.style.border;
   const originalPadding = target.style.padding;
   
-  target.style.background = "rgba(0,0,0,0.85)";
+  target.style.background = "rgba(0,0,0,0.9)";
   target.style.color = "#FFE484";
   target.style.border = "3px solid #facc15";
   target.style.padding = "40px 30px";
   
   try {
-    await new Promise(r => setTimeout(r, 60));
+    await new Promise(r => setTimeout(r, 80));
     const canvas = await html2canvas(target, {
-      scale: 3,
+      scale: 2.5,
       backgroundColor: "#0a0f1e",
       logging: false,
-      useCORS: false
+      useCORS: false,
+      allowTaint: false
     });
     
     // restore styles
@@ -647,9 +709,20 @@ document.getElementById("downloadBtn").addEventListener("click", downloadBannaAr
 // Set initial playful example (catchy roman)
 romanInput.value = "Kurukh banna jadoo, parampara aur shakti";
 updateBanna();
-romanInput.focus();
 
-console.log("✨ BHASHA JADOO active — kurukh banna converter fully working & catchy ✨");
+// Additional mobile focus workaround: ensure scrolling and input works
+romanInput.addEventListener('touchstart', function(e) {
+  // just to ensure focus works properly on all devices
+  this.focus();
+});
+
+// Force reflow for mobile browsers if needed
+window.addEventListener('load', function() {
+  romanInput.focus();
+  updateBanna();
+});
+
+console.log("✨ BHASHA JADOO active — mobile typing FIXED, kurukh banna converter fully working ✨");
 </script>
 </body>
 </html>
