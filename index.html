@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>✨ BHASHA JADOO ✨ | Roman → Kurukh Banna Converter</title>
+
+<!-- html2canvas for PNG captures -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(ellipse at 20% 30%, #0a0f1e, #03050b);
+  font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 1.8rem 1.2rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* animated magical dust */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.3"><circle cx="20%" cy="30%" r="3" fill="%23ffd966"/><circle cx="80%" cy="70%" r="4" fill="%23c084fc"/><circle cx="45%" cy="85%" r="2" fill="%2334d399"/><circle cx="65%" cy="15%" r="3" fill="%23facc15"/><circle cx="10%" cy="90%" r="2.5" fill="%23fb7185"/><circle cx="92%" cy="40%" r="3" fill="%238185fc"/></svg>');
+  background-repeat: repeat;
+  background-size: 180px;
+  pointer-events: none;
+  animation: floatDust 40s linear infinite;
+  z-index: 0;
+}
+
+@keyframes floatDust {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.4; }
+  100% { transform: translate(-5%, -5%) rotate(2deg); opacity: 0.7; }
+}
+
+/* main wizard card */
+.wizard-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  background: rgba(6, 10, 25, 0.68);
+  backdrop-filter: blur(14px);
+  border-radius: 5rem 3rem 5rem 3rem;
+  padding: 2rem 2rem 2.2rem;
+  border: 1px solid rgba(250, 204, 21, 0.5);
+  box-shadow: 0 30px 45px -20px black, inset 0 1px 0 rgba(255,255,200,0.1);
+  transition: all 0.4s;
+  animation: cardGlowPop 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cardGlowPop {
+  0% { opacity: 0; transform: scale(0.92) translateY(40px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* shimmer animated border */
+.wizard-card {
+  position: relative;
+}
+
+.wizard-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 5rem 3rem 5rem 3rem;
+  padding: 2px;
+  background: linear-gradient(125deg, #facc15, #ec4899, #06b6d4, #facc15);
+  background-size: 200% 200%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  animation: magicalBorder 5s ease infinite;
+  opacity: 0.8;
+}
+
+@keyframes magicalBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* header with catchy spark */
+.magic-header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+
+.spark-stack {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 3rem;
+  animation: bounceJuggle 2.5s infinite ease;
+}
+
+@keyframes bounceJuggle {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(5deg); }
+  75% { transform: translateY(4px) rotate(-3deg); }
+}
+
+.magic-header h1 {
+  font-size: 2.7rem;
+  font-weight: 800;
+  background: linear-gradient(145deg, #FFE484, #FFB347, #F472B6, #34D399);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+  margin: 12px 0 8px;
+  text-shadow: 0 0 8px rgba(250,204,21,0.4);
+}
+
+.catchy-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  padding: 8px 28px;
+  border-radius: 60px;
+  border: 1px solid #facc15;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fef9c3;
+}
+
+.typewriter {
+  display: inline-block;
+  border-right: 2px solid #facc15;
+  animation: blinkCursor 0.8s step-end infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #facc15; }
+}
+
+/* stylish double separator */
+.sep-magic {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #facc15, #ec4899, #06b6d4, transparent);
+  margin: 20px 0 25px;
+}
+
+/* labels fun */
+.fun-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.icon-bubble {
+  background: linear-gradient(135deg, #F97316, #EA580C);
+  width: 48px;
+  height: 48px;
+  border-radius: 50% 30% 50% 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 6px 14px #f9731680;
+  transition: 0.2s;
+}
+
+.fun-label span {
+  font-weight: 700;
+  font-size: 1.4rem;
+  background: linear-gradient(135deg, #fde68a, #fdba74);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.2px;
+}
+
+/* input magic carpet */
+.magic-input {
+  width: 100%;
+  height: 170px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 2px solid rgba(250, 204, 21, 0.5);
+  border-radius: 38px;
+  padding: 18px 24px;
+  font-family: 'Fira Mono', 'Courier New', monospace;
+  font-size: 16px;
+  color: #FFE7B6;
+  resize: vertical;
+  transition: all 0.25s;
+  backdrop-filter: blur(4px);
+}
+
+.magic-input:focus {
+  outline: none;
+  border-color: #facc15;
+  box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.3);
+  background: #0a0e1c;
+}
+
+/* output mystical display */
+.mystic-area {
+  margin: 28px 0 25px;
+}
+
+.output-fun {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.flex-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flex-icon .icon-bubble {
+  background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+  width: 48px;
+  height: 48px;
+  font-size: 1.6rem;
+}
+
+.flex-icon span {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #DDD6FE, #C4B5FD);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.script-charm {
+  background: rgba(139, 92, 246, 0.3);
+  padding: 5px 16px;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #f0e6ff;
+  border: 1px dashed #a78bfa;
+}
+
+.banna-throne {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 48px;
+  padding: 40px 30px;
+  min-height: 280px;
+  border: 2px solid #c084fc;
+  box-shadow: 0 20px 35px -12px black, inset 0 0 20px rgba(192,132,252,0.2);
+  font-family: "KuruxBanna Xalxo", "Noto Sans Devanagari", monospace;
+  font-size: 56px;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: pre-wrap;
+  color: #FFE484;
+  letter-spacing: 3px;
+  transition: all 0.2s;
+  animation: gentleGlow 2.2s infinite alternate;
+}
+
+@keyframes gentleGlow {
+  0% { text-shadow: 0 0 2px #facc15; border-color: #c084fc80; }
+  100% { text-shadow: 0 0 12px #ffb347; border-color: #facc15; }
+}
+
+.banna-throne:empty::before {
+  content: "🌀✨ यहाँ बन्ना लिपि चमकेगी ✨🌀";
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #a78bfa;
+  letter-spacing: normal;
+  display: block;
+  text-align: center;
+}
+
+/* exciting button group */
+.action-magic {
+  display: flex;
+  gap: 18px;
+  margin: 32px 0 20px;
+  flex-wrap: wrap;
+}
+
+.spell-btn {
+  flex: 1;
+  padding: 15px 12px;
+  border: none;
+  border-radius: 70px;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 1, 0.4, 1.2);
+  background: rgba(20, 20, 40, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(250, 204, 21, 0.5);
+  color: #FFF4CF;
+}
+
+.spell-btn:nth-child(1) {
+  background: linear-gradient(105deg, #2B9348, #0F5C2F);
+  box-shadow: 0 5px 12px #2b934850;
+}
+.spell-btn:nth-child(2) {
+  background: linear-gradient(105deg, #DC2626, #991B1B);
+}
+.spell-btn:nth-child(3) {
+  background: linear-gradient(105deg, #2563EB, #1E3A8A);
+}
+
+.spell-btn:hover {
+  transform: translateY(-6px) scale(1.02);
+  filter: brightness(1.1);
+  box-shadow: 0 18px 28px -8px black;
+}
+
+.spell-btn:active {
+  transform: translateY(3px);
+}
+
+/* funky footer */
+.magic-footer {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(250, 204, 21, 0.4);
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+/* loading effect for png */
+.btn-loading {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+/* responsive joy */
+@media (max-width: 700px) {
+  .wizard-card {
+    padding: 1.4rem;
+  }
+  .magic-header h1 {
+    font-size: 1.8rem;
+  }
+  .banna-throne {
+    font-size: 36px;
+    padding: 28px 20px;
+  }
+  .spell-btn {
+    padding: 12px 8px;
+    font-size: 0.8rem;
+  }
+  .fun-label span, .flex-icon span {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .banna-throne {
+    font-size: 26px;
+  }
+  .spark-stack {
+    gap: 12px;
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="wizard-card">
+  <div class="magic-header">
+    <div class="spark-stack">
+      🔥 🪶 ✨ 🌀 🔥
+    </div>
+    <h1>BHASHA JADOO · कुरुख बन्ना</h1>
+    <div class="catchy-tag">
+      <span>⚡ ROMAN ➜ KURUKH SCRIPT ⚡</span>
+      <span class="typewriter"> | TYPE & WATCH MAGIC</span>
+    </div>
+  </div>
+  
+  <div class="sep-magic"></div>
+  
+  <!-- Input with catchy label -->
+  <div class="fun-label">
+    <div class="icon-bubble">📝🎤</div>
+    <span>Roman Type Karo ~ Magic Hoga</span>
+  </div>
+  <textarea id="inputText" class="magic-input" placeholder="Example: Kurukh banna likho, adivasi parampara, dharam aur shakti...&#10;Type karte hi Banna script mein badlega! ✨"></textarea>
+  
+  <!-- output area -->
+  <div class="mystic-area">
+    <div class="output-fun">
+      <div class="flex-icon">
+        <div class="icon-bubble">🔮📜</div>
+        <span>Kurukh Banna — लिपि रूपांतर</span>
+      </div>
+      <div class="script-charm">✨ बन्ना दिव्य अक्षर ✨</div>
+    </div>
+    <div id="outputText" class="banna-throne"></div>
+  </div>
+  
+  <!-- 3 catchy buttons -->
+  <div class="action-magic">
+    <button id="copyBtn" class="spell-btn">📋✨ Copy Banna Magic</button>
+    <button id="clearBtn" class="spell-btn">🗑️🌀 Clear & Rewind</button>
+    <button id="downloadBtn" class="spell-btn">📸🔥 PNG as Sacred Art</button>
+  </div>
+  
+  <div class="magic-footer">
+    <span>🪶 कुरुख बन्ना · द्रविड़ लिपि विरासत</span>
+    <span>⚡ Realtime | No server | Pure Jadoo</span>
+    <span>📥 Save as Image & Share Banna Glory</span>
+  </div>
+</div>
+
+<script>
+// =========================================================
+//   FULLY FIXED & POWERFUL KEYMAP (NO BREAKS)
+//   Roman ➜ Kurukh Banna EXACT mapping with longest-first
+// =========================================================
+
+// VOWELS : longer patterns first for accurate replacement
+const vowelMap = {
+  "ii": "I",
+  "uu": "U",
+  "ee": "E",
+  "ei": "Y",
+  "ou": "O",
+  "aa": "A",
+  "a": "a",
+  "i": "i",
+  "u": "u",
+  "e": "e",
+  "o": "o"
+};
+
+// CONSONANTS - full original robust set
+const consMap = {
+  // longer clusters first
+  "kh": "K",
+  "gh": "G",
+  "chh": "C",
+  "jh": "J",
+  "th": "T",
+  "dh": "X",
+  "ph": "f",
+  "bh": "B",
+  "khy": "H",
+  "tr": "}",
+  "gy": ">",
+  "nga": "<",
+  "nya": "^",
+  "nd": "F",
+  "sha": "S",
+  "sh": "{",
+  // singles
+  "k": "k",
+  "g": "g",
+  "ch": "c",
+  "j": "j",
+  "t": "t",
+  "d": "L",
+  "to": "z",
+  "tho": "Z",
+  "do": "d",
+  "dho": "D",
+  "no": "n",
+  "p": "p",
+  "b": "b",
+  "m": "m",
+  "y": "y",
+  "r": "r",
+  "l": "l",
+  "v": "v",
+  "s": "s",
+  "h": "h",
+  "DA": "P",
+  "R": "R",
+  "x": "x"
+};
+
+// signs, numbers, specials
+const signMap = {
+  "ang": "N",
+  "an": "M",
+  ".": "{",
+  "sela": "[",
+  "hechka": "]"
+};
+
+const numMap = {
+  "0": "0","1": "1","2": "2","3": "3","4": "4",
+  "5": "5","6": "6","7": "7","8": "8","9": "9"
+};
+
+// master dictionary
+const fullDict = {
+  ...vowelMap,
+  ...consMap,
+  ...signMap,
+  ...numMap
+};
+
+// sorted longest-first for accurate conversion (kh replaces before k)
+const sortedKeys = Object.keys(fullDict).sort((a,b) => b.length - a.length);
+
+// 🔥 conversion function (perfect replacement)
+function convertRomanToBanna(inputStr) {
+  if (!inputStr) return "";
+  let processed = inputStr;
+  for (let pattern of sortedKeys) {
+    const replacement = fullDict[pattern];
+    const escaped = pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(escaped, 'g');
+    processed = processed.replace(regex, replacement);
+  }
+  return processed;
+}
+
+// DOM hooks
+const romanInput = document.getElementById("inputText");
+const bannaOutput = document.getElementById("outputText");
+
+// live conversion
+function updateBanna() {
+  const raw = romanInput.value;
+  const converted = convertRomanToBanna(raw);
+  bannaOutput.textContent = converted;
+}
+
+romanInput.addEventListener("input", updateBanna);
+romanInput.addEventListener("keyup", updateBanna);
+romanInput.addEventListener("change", updateBanna);
+
+// ---- Catchy Copy ----
+async function copyBannaSpell() {
+  const bannaText = bannaOutput.textContent;
+  if (!bannaText || bannaText.trim() === "" || bannaText === "🌀✨ यहाँ बन्ना लिपि चमकेगी ✨🌀") {
+    alert("❌ जादू अधूरा! पहले Roman likho aur Banna banayein ✨");
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(bannaText);
+    alert("✅✨ बन्ना कॉपी हो गया! ✨ अब share करो || Banna copied!");
+  } catch (err) {
+    alert("⚠️ कृपया manual copy karein: Ctrl+C");
+  }
+}
+
+// ---- Clear with style ----
+function clearMagic() {
+  romanInput.value = "";
+  bannaOutput.textContent = "";
+  romanInput.focus();
+}
+
+// ---- PNG download with fun loading and catchy effect ----
+async function downloadBannaArt() {
+  const target = bannaOutput;
+  const content = target.textContent;
+  if (!content || content.trim() === "" || content === "🌀✨ यहाँ बन्ना लिपि चमकेगी ✨🌀") {
+    alert("🌟 पहले Roman text likhein! 🌟 fir Banna generate karein aur PNG save karein.");
+    return;
+  }
+  
+  const btn = document.getElementById("downloadBtn");
+  const originalBtnHtml = btn.innerHTML;
+  btn.innerHTML = "🎨 जादू रेंडर... ✨";
+  btn.classList.add("btn-loading");
+  
+  // store styles for capture
+  const originalBg = target.style.background;
+  const originalColor = target.style.color;
+  const originalBorder = target.style.border;
+  const originalPadding = target.style.padding;
+  
+  target.style.background = "rgba(0,0,0,0.85)";
+  target.style.color = "#FFE484";
+  target.style.border = "3px solid #facc15";
+  target.style.padding = "40px 30px";
+  
+  try {
+    await new Promise(r => setTimeout(r, 60));
+    const canvas = await html2canvas(target, {
+      scale: 3,
+      backgroundColor: "#0a0f1e",
+      logging: false,
+      useCORS: false
+    });
+    
+    // restore styles
+    target.style.background = originalBg;
+    target.style.color = originalColor;
+    target.style.border = originalBorder;
+    target.style.padding = originalPadding;
+    
+    const timestamp = new Date().toISOString().slice(0,19).replace(/:/g, '-');
+    const link = document.createElement("a");
+    link.download = `kurukh_banna_magic_${timestamp}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+    
+    alert("✅🔥 PNG तैयार! Banna ki shakti aapke paas 🔥✅");
+  } catch (err) {
+    console.error("PNG error", err);
+    alert("⚠️ PNG generate nahi ho paaya, dubara try karein.");
+    target.style.background = originalBg;
+    target.style.color = originalColor;
+    target.style.border = originalBorder;
+    target.style.padding = originalPadding;
+  } finally {
+    btn.innerHTML = originalBtnHtml;
+    btn.classList.remove("btn-loading");
+  }
+}
+
+// attach event listeners
+document.getElementById("copyBtn").addEventListener("click", copyBannaSpell);
+document.getElementById("clearBtn").addEventListener("click", clearMagic);
+document.getElementById("downloadBtn").addEventListener("click", downloadBannaArt);
+
+// Set initial playful example (catchy roman)
+romanInput.value = "Kurukh banna jadoo, parampara aur shakti";
+updateBanna();
+romanInput.focus();
+
+console.log("✨ BHASHA JADOO active — kurukh banna converter fully working & catchy ✨");
+</script>
+</body>
+</html>
